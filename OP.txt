@@ -1,0 +1,71 @@
+List<> dipake buat ngeget data  (DALAM JUMLAH BANYAK)
+
+Theater? data yang diinput gk boleh ada yang kosong
+theater data  yang diinput boleh nul (UPDATE,PATCH)
+
+Kalo Dicontroller kebanyakna Pake 
+LIST<> (NGAMBIL DATA BANYAK)
+.... RESPONSE kalo dia balikin tipe data response
+
+
+CARA PENGERJAAN
+Model → Data → IRepository → Repository → Request/Response → IService → Service → Controller
+
+COMMAND DATABASE PACKAGE MANAGE CONSOLE
+
+# Buat migration baru (setelah mengubah model)
+Add-Migration NamaMigration
+
+# Terapkan migration ke database
+Update-Database
+
+# Kembali ke migration tertentu
+Update-Database NamaMigrationSebelumnya
+
+# Kembalikan database ke kosong (hapus semua tabel migration)
+Update-Database 0
+
+# Hapus migration terakhir (yang belum di-apply)
+Remove-Migration
+
+# Lihat daftar migration
+Get-Migration
+
+# Buat script SQL dari migration
+Script-Migration
+
+# Hapus database
+Drop-Database
+
+BUAT FILE FE 
+#DOWNLOAD
+npm install -g @angular/cli@17
+ng version
+ng new cinebook-web
+
+# Component
+ng g component components/movie-list
+ng g c pages/login
+
+# Service
+ng g service services/movie
+ng g s services/auth
+
+# Guard (functional guard di Angular 17)
+ng g guard guards/auth
+
+# Interceptor (untuk menyisipkan token JWT)
+ng g interceptor interceptors/auth
+
+# Interface / model
+ng g interface models/movie
+
+# Pipe
+ng g pipe pipes/rupiah
+
+# Directive
+ng g directive directives/highlight
+
+# Enum
+ng g enum models/booking-status
+

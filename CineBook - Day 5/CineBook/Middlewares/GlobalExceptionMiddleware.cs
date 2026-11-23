@@ -17,7 +17,7 @@ namespace CineBook.Middlewares
             {
                 await _next(ctx);
             }
-            catch (Exception ex)
+            catch 
             {
                 ctx.Response.ContentType = "application/json";
                 ctx.Response.StatusCode = (int)HttpStatusCode.InternalServerError;

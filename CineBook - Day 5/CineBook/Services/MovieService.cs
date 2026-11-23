@@ -14,7 +14,7 @@ namespace CineBook.Services
 
         public async Task<List<Movie>> GetAllAsync(string? search, int page, int limit)
         {
-            var movies = await _movieRepository.GetAllAsync();
+            List<Movie> movies = await _movieRepository.GetAllAsync();
 
             if (!string.IsNullOrEmpty(search))
             {

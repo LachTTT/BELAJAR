@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using CineBook.Services;
+using CineBook.Models;
 
 namespace CineBook.Controllers
 {
@@ -20,7 +21,7 @@ namespace CineBook.Controllers
             [FromQuery] int page = 1,
             [FromQuery] int limit = 10)
         {
-            var movies = await _movieService.GetAllAsync(search, page, limit);
+            List<Movie> movies = await _movieService.GetAllAsync(search, page, limit);
             return Ok(movies);
         }
     }

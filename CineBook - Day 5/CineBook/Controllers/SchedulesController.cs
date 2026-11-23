@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CineBook.Services;
+using CineBook.Models;
+using CineBook.DTOs;
 
 namespace CineBook.Controllers
 {
@@ -17,14 +19,14 @@ namespace CineBook.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSchedules()
         {
-            var schedules = await _scheduleService.GetAllAsync();
+            List<ScheduleResponse> schedules = await _scheduleService.GetAllAsync();
             return Ok(schedules);
         }
 
         [HttpGet("{id:long}")]
         public async Task<IActionResult> GetSchedule(long id)
         {
-            var schedule = await _scheduleService.GetByIdAsync(id);
+            ScheduleResponse schedule = await _scheduleService.GetByIdAsync(id);
             if (schedule == null) return NotFound();
             return Ok(schedule);
         }

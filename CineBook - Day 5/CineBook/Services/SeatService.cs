@@ -14,7 +14,7 @@ namespace CineBook.Services
 
         public async Task<List<Seat>> GetByScheduleIdAsync(long scheduleId)
         {
-            var seats = await _seatRepository.GetAllAsync();
+            List<Seat> seats = await _seatRepository.GetAllAsync();
             return seats.Where(s => s.ScheduleId == scheduleId).ToList();
         }
     }

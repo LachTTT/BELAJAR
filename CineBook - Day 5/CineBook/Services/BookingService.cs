@@ -31,7 +31,7 @@ namespace CineBook.Services
 
         public async Task<List<Booking>> GetAllAsync(string? status, DateTime? date)
         {
-            var bookings = await _bookingRepository.GetAllAsync("Schedule.Movie", "Schedule.Theater");
+            List<Booking> bookings = await _bookingRepository.GetAllAsync("Schedule.Movie", "Schedule.Theater");
 
             if (!string.IsNullOrEmpty(status))
             {
@@ -81,7 +81,7 @@ namespace CineBook.Services
 
                 booking.BookingSeats = new List<BookingSeat>();
 
-                foreach (var seat in requestedSeats)
+                foreach (Seat seat in requestedSeats)
                 {
                     seat.IsAvailable = false;
                     _seatRepository.Update(seat);
@@ -117,7 +117,7 @@ namespace CineBook.Services
 
         public async Task<BookingDetailResponse?> UpdateAsync(long id, CreateBookingRequest request)
         {
-            var booking = await _bookingRepository.GetByIdAsync(id);
+            Booking? booking = await _bookingRepository.GetByIdAsync(id);
             if (booking == null) return null;
 
             booking.TotalTickets = request.TotalTickets;
@@ -126,13 +126,13 @@ namespace CineBook.Services
             _bookingRepository.Update(booking);
             await _bookingRepository.SaveChangesAsync();
 
-            var updated = await GetByIdAsync(id);
+            Booking? updated = await GetByIdAsync(id);
             return updated != null ? ToDetailResponse(updated) : null;
         }
 
         public async Task<bool> CancelAsync(long id)
         {
-            var booking = await _bookingRepository.GetByIdAsync(id);
+            Booking? booking = await _bookingRepository.GetByIdAsync(id);
             if (booking == null) return false;
 
             booking.Status = BookingStatus.CANCELLED;

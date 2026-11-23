@@ -27,7 +27,7 @@ namespace CineBook.Services
 
         public async Task<TheaterResponse> CreateAsync(TheaterRequest request)
         {
-            var theater = new Theater
+            Theater theater = new Theater
             {
                 Name = request.Name,
                 Location = request.Location
